@@ -28,7 +28,7 @@ hypothesis.score(X, y)
 #Well this is a horrible Dataset to try and run
 
 #######################################################################
-ImportError                               Traceback (most recent call last)
+"""ImportError                               Traceback (most recent call last)
 Cell In[1], line 1
 ----> 1 from sklearn.datasets import load_boston
       2 boston = load_boston()
@@ -92,7 +92,7 @@ for the Ames housing dataset.
 [2] Harrison Jr, David, and Daniel L. Rubinfeld.
 "Hedonic housing prices and the demand for clean air."
 Journal of environmental economics and management 5.1 (1978): 81-102.
-<https://www.researchgate.net/publication/4974606_Hedonic_housing_prices_and_the_demand_for_clean_air>
+<https://www.researchgate.net/publication/4974606_Hedonic_housing_prices_and_the_demand_for_clean_air>"""
 
 ##################################################################################
 
@@ -102,6 +102,19 @@ from sklearn.preprocessing import MinMaxScaler
 scaler = MinMaxScaler(feature_range=(0, 1))
 scaler.fit(X)
 print(scaler.transform(new_observation))
+
+
+
+### All this shit below works fine
+# [Hashing Trick]
+# [Deterministic Selection]
+#    -Used for 'sparse matrices'
+#    -Essentially it imputes null values in a Matrix
+
+#Sci-Kit Learn offers 'HashingVectorizer' ; a class that rapidly transforms any
+#collection of text into a Sparse Data Matrix using the Hashing Trick
+# see CountVectorizer
+
 Performing the Hashing Trick
 Demonstrating the hashing trick
 print(hash('Python'))
@@ -157,6 +170,9 @@ texts = ['Python for data science',
          'Python for machine learning']
 %timeit oh_enconded = oh_enconder.fit_transform(texts)
 %timeit hashing = htrick.transform(texts)
+
+#BenchMarking and Performance
+
 import timeit
 cumulative_time = timeit.timeit(
     "hashing = htrick.transform(texts)", 
@@ -168,6 +184,8 @@ Working with the memory profiler
 import sys
 !{sys.executable} -m pip install memory_profiler
 # Initialization from IPython (to be repeat at every IPython start)
+
+#Memory Profiler and Usage
 %load_ext memory_profiler
 hashing = htrick.transform(texts)
 %memit dense_hashing = hashing.toarray()
@@ -196,3 +214,6 @@ from sklearn.model_selection import cross_val_score
                                       cv=20, n_jobs=1)
 %timeit multi_core = cross_val_score(SVC(), X, y, \
                                      cv=20, n_jobs=-1)
+    
+    #Multicores
+    #And Parallelism
